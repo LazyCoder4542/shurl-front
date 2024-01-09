@@ -1,7 +1,11 @@
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const path = require("path")
-dotenv.config({path: path.join(__dirname, '/../config.env')})
+console.log(process.env)
+const dev = !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+
+if (dev) dotenv.config({path: path.join(__dirname, '/../config.env')})
+
 
 const CS = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
 mongoose.connect(CS).then(c => {
