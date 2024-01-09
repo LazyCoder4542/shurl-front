@@ -93,7 +93,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
 
     const user = await User.findOne({passwordResetToken: hashedToken, passwordResetTokenEAt: {$gt: Date.now()}})
     if (!user) {
-        throw new AppError("tooken invalid, expired or used", 401)
+        throw new AppError("token invalid, expired or used", 401)
     }
 
     user.password = password
