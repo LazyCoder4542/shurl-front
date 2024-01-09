@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const path = require("path")
-console.log(process.env)
 const dev = !process.env.NODE_ENV || process.env.NODE_ENV === "development"
 
 if (dev) dotenv.config({path: path.join(__dirname, '/../config.env')})
