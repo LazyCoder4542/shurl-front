@@ -30,7 +30,6 @@ const sendErrorDev = (err, res) => {
 }
 
 const sendErroProd = (err, res) => {
-    console.log(err)
     if (err.isOperational) {
         res.status(err.statusCode).json({
             status: err.status,
@@ -38,6 +37,7 @@ const sendErroProd = (err, res) => {
         })
     }
     else {
+        console.log(err)
         res.status(500).json({
             status: 'error',
             message: err.message || "An unknown error occurred"
@@ -50,7 +50,7 @@ const errorController = (err, req, res, next) => {
         sendErrorDev(err, res)
     }
     else {
-        let error = {...err}
+        let error = err
         if (err.name === "CastError") error = handleCastErrorDB(error)
         if (err.code === 11000) error = handleDuplicateFieldsDB(error)
         if (err.name === "ValidationError") error = handleValidationErrorDB(error)
