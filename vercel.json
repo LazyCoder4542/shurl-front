@@ -15,6 +15,10 @@
     {
       "src": "/api/(.*)",
       "dest": "api/app.js"
+    },
+    {
+      "src": "/:shortURL",
+      "dest": "api/app.js"
     }
   ]
 }
