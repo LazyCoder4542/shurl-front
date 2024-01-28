@@ -1,5 +1,9 @@
+"use client"
+import Link from 'next/link'
+import useHeader from "@/hooks/useHeader";
 import Image from "next/image";
 function Header() {
+  const { options } = useHeader()
   return (
     <header className="flex items-center justify-between px-16 py-8">
       <div>
@@ -14,8 +18,14 @@ function Header() {
         />
       </div>
       <div className="flex gap-x-8">
-        <button className="btn-secondary">Login</button>
-        <button className="btn-primary">Sign up</button>
+        <Link href="login">
+          <button className='btn-secondary'>
+            Login
+          </button>
+        </Link>
+        <Link href="signup">
+          <button className="btn-primary">Sign up</button>
+        </Link>
       </div>
     </header>
   );

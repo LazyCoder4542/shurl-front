@@ -7,6 +7,6 @@
     @apply text-white bg-primary rounded-xl px-6 py-3 text-xl;
   }
   .btn-secondary {
-    @apply text-primary bg-primary-200 rounded-xl px-6 text-xl;
+    @apply text-primary bg-primary-200 rounded-xl px-6 py-3 text-xl;
   }
 }
