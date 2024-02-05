@@ -15,6 +15,7 @@ mongoose.connect(CS).then(c => {
 
 
 const bodyParser = require("body-parser")
+var cookieParser = require('cookie-parser')
 const app = require("express")()
 
 const morgan = require("morgan")
@@ -27,8 +28,9 @@ const apiRouter = require("./routers/api-route");
 const errorController = require("./controllers/errorController");
 
 app.use(morgan("dev"))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(cookieParser())
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
 
 
 

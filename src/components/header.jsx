@@ -5,7 +5,7 @@ import Image from "next/image";
 function Header() {
   const { options } = useHeader()
   return (
-    <header className="flex items-center justify-between px-16 py-8">
+    <header className="hidden flex items-center justify-between px-16 py-8">
       <div>
         <Image
           width={140}

@@ -66,11 +66,13 @@ const login = catchAsync(async (req, res) => {
 })
 
 const protect = catchAsync(async (req, res, next) => {
-    const {authorization: auth} = req.headers
-    if (!auth || auth.split(" ").length != 2 || !(auth.split(" ")[0] === "Bearer")) {
-        throw new AppError("unauthorized", 401)
-    }
-    const token = auth.split(" ")[1]
+    const {token} = req.cookies
+    // using headers
+    // const {authorization: auth} = req.headers
+    // if (!auth || auth.split(" ").length != 2 || !(auth.split(" ")[0] === "Bearer")) {
+    //     throw new AppError("unauthorized", 401)
+    // }
+    // const token = auth.split(" ")[1]
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
     const user = await User.findById(decoded.id)
 
