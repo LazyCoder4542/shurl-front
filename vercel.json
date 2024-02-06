@@ -14,11 +14,11 @@
     {"handle": "filesystem"},
     {
       "src": "/api/(.*)",
-      "dest": "api/app.js"
+      "dest": "api/index.js"
     },
     {
       "src": "/:shortURL",
-      "dest": "api/app.js"
+      "dest": "api/index.js"
     }
   ]
 }
