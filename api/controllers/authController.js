@@ -66,7 +66,8 @@ const login = catchAsync(async (req, res) => {
 })
 
 const protect = catchAsync(async (req, res, next) => {
-    const {token} = req.cookies
+    const {jwt: token} = req.cookies
+    console.log(token)
     // using headers
     // const {authorization: auth} = req.headers
     // if (!auth || auth.split(" ").length != 2 || !(auth.split(" ")[0] === "Bearer")) {

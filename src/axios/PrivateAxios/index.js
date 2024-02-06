@@ -4,8 +4,8 @@ import {options} from "../PublicAxios";
 const PrivateAxiosInstance = axios.create(options);
 PrivateAxiosInstance.interceptors.request.use(function (config) {
   // Do something before request is sent
-  token = localStorage.getItem('authToken');
-  config.headers.Authorization = `Bearer ${token}`
+  // token = localStorage.getItem('authToken');
+  // config.headers.Authorization = `Bearer ${token}`
   return config;
 }, function (error) {
   // Do something with request error

@@ -5,12 +5,37 @@ const dev = !process.env.NODE_ENV || process.env.NODE_ENV === "development"
 
 if (dev) dotenv.config({path: path.join(__dirname, '/../config.env')})
 
-
 const CS = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
-mongoose.connect(CS).then(c => {
-    console.log('DB connection successful')
-})
-
+const uri = process.env.MONGO_URI
+console.log(uri)
+function connectDB() {
+    try {
+      mongoose.connect(CS, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+    } catch (err) {
+      console.error(err.message);
+      process.exit(1);
+    }
+    const dbConnection = mongoose.connection;
+    dbConnection.once("open", (_) => {
+      console.log(`Database connected: ${CS}`);
+    });
+   
+    dbConnection.on("error", (err) => {
+      console.error(`connection error: ${err}`);
+    });
+    return;
+}
+// connectDB();
+// mongoose.connect(CS).then(c => {
+//     console.log('DB connection successful')
+// }).catch(err => {
+//     console.log("Error connecting to DATABASE")
+//     console.log(err)
+// })
+// mongoose.disconnect()
 ////////////////////////////
 
 
