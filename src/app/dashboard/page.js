@@ -5,14 +5,18 @@ import { useEffect, useState } from "react";
 function Dashboard() {
   const [isPageLoaded, setIsPageLoaded] = useState(false)
   const [pageData, setPageData] = useState({})
-  useEffect(() => {
-    getUserDetails().then(data => {
-      console.log(data)
-    })
-    .catch((error) => {
+  const getData = async () =>{
+    try {
+      const {data} = await getUserDetails()
+      setPageData(data.data)
+      setIsPageLoaded(true)
+    }
+    catch (e) {
       console.log(error)
-    })
-    setIsPageLoaded(true)
+    }
+  }
+  useEffect(() => {
+    getData();
   }, [])
   return (
     <>
@@ -22,8 +26,6 @@ function Dashboard() {
   );
 }
 
-function getData(){
-  
-}
+
 
 export default Dashboard;

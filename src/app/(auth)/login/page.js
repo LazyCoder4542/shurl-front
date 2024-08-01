@@ -1,27 +1,19 @@
 "use client"
-import { login } from "@/axios";
+import { useRouter } from 'next/navigation'
 import InputBox from "@/components/Common/InputBox";
 import Image from "next/image"
 import { useState } from "react";
+import useAuth from '@/hooks/useAuth';
 function Login() {
     const [formBody, setFormBody] = useState({
         email: "",
         password: ""
     })
+    const {logIn} = useAuth()
     const handleSubmit = (e) => {
         e.preventDefault()
-        const {token} = login(formBody).then((data) => {
-            console.log(data)
-        })
-        .catch(err => {
-            if (err.response) {
-                console.log(err.response)
-            }
-            else {
-                //axios error
-                console.log(err)
-            }
-        })
+        logIn(formBody)
+
     }
     return (
         <div className="flex h-screen *:basis-full *:flex *:h-full">
